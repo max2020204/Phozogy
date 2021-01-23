@@ -1,0 +1,64 @@
+﻿@{
+    var pageName = ViewContext.RouteData.Values["controller"].ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("Head/Meta")
+    <title>@ViewData["Title"] - Phozogy</title>
+    @await Html.PartialAsync("Head/Fonts")
+    @await Html.PartialAsync("Head/CSS")
+
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        <a asp-controller="Home">
+                            <img src="~/img/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <nav class="nav-menu mobile-menu">
+                        <ul>
+
+                            <li class="@(pageName == "Home" ? "active" : "")"><a asp-controller="Home">Home</a></li>
+                            <li class="@(pageName == "Services" ? "active" : "")"><a asp-controller="Services">Services</a></li>
+                            <li class="@(pageName == "Pricing" ? "active" : "")"><a asp-controller="Pricing">Pricing</a></li>
+                            <li class="@(pageName == "Gallery" ? "active" : "")"><a asp-controller="Gallery">Gallery</a></li>
+                            <li class="@(pageName == "Blog" ? "active" : "")"><a asp-controller="Blog">Blog</a></li>
+                            <li class="@(pageName == "Contact" ? "active" : "")"><a asp-controller="Contact">Contact</a></li>
+                            <li class="@(pageName == "About" ? "active" : "")"><a asp-controller="About">About</a></li>
+                        </ul>
+                    </nav>
+                    <div class="top-search search-switch">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div id="mobile-menu-wrap"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    @RenderBody()
+    @await Html.PartialAsync("Footer")
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+    @await Html.PartialAsync("JSscripts")
+</body>
+</html>

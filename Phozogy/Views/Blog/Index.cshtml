@@ -1,0 +1,116 @@
+﻿@model IndexViewModel
+@{
+    ViewData["PageName"] = "Blog";
+    ViewData["Title"] = "Blog";
+}
+@await Html.PartialAsync("~/Views/Shared/Breadcrumb.cshtml")
+<!-- Blog Section Begin -->
+<section class="blog-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                @foreach (var item in Model.Blog)
+                {
+                    <div class="blog-item">
+                        <div class="bi-pic">
+                            <img src="@item.Image" width="420" height="280" alt="">
+                        </div>
+                        <div class="bi-text">
+                            <div class="label">@item.Type</div>
+                            <h5>
+                                <a asp-controller="Post" asp-action="Index" asp-area="" asp-route-id="@item.id">@item.Title</a>
+                            </h5>
+                            <ul>
+                                <li>@item.Date</li>
+                            </ul>
+                            <p>
+                                @item.Short_Description
+                            </p>
+                        </div>
+                    </div>
+                }
+                <div class="blog-pagination">
+                    @for (int i = 1; i <= Model.PageView.TotalPages; i++)
+                    {
+                        <a class=@(i==Model.PageView.PageNumber? "nav-link disabled" :"") asp-action="Index" asp-route-page="@i">@i</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="blog-sidebar">
+                    <div class="bs-item s-mb">
+                        <h5>Feature posts</h5>
+                        <div class="bi-feature-post">
+                            <a href="#" class="fp-item">
+                                <div class="fp-pic">
+                                    <img src="img/blog/fp-1.jpg" alt="">
+                                </div>
+                                <div class="fp-text">
+                                    <h6>This Photograph Has Elderly Couples...</h6>
+                                    <span>Aug,15, 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="fp-item">
+                                <div class="fp-pic">
+                                    <img src="img/blog/fp-2.jpg" alt="">
+                                </div>
+                                <div class="fp-text">
+                                    <h6>Budget Gear Guide: The Best Cheap Off...</h6>
+                                    <span>Aug,15, 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="fp-item">
+                                <div class="fp-pic">
+                                    <img src="img/blog/fp-3.jpg" alt="">
+                                </div>
+                                <div class="fp-text">
+                                    <h6>Know Before You Go: Guide to Disney...</h6>
+                                    <span>Aug,15, 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="fp-item">
+                                <div class="fp-pic">
+                                    <img src="img/blog/fp-4.jpg" alt="">
+                                </div>
+                                <div class="fp-text">
+                                    <h6>Budget Gear Guide: The Best Cheap Off...</h6>
+                                    <span>Aug,15, 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="fp-item">
+                                <div class="fp-pic">
+                                    <img src="img/blog/fp-5.jpg" alt="">
+                                </div>
+                                <div class="fp-text">
+                                    <h6>Know Before You Go: Guide to Disney...</h6>
+                                    <span>Aug,15, 2019</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bs-item s-mb">
+                        <h5>Subscribe</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor.</p>
+                        <div class="bi-subscribe">
+                            <form action="#">
+                                <input type="text" placeholder="Name">
+                                <input type="text" placeholder="Email">
+                                <button type="submit" class="site-btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="bs-item">
+                        <h5>Instagram</h5>
+                        <div class="bi-insta">
+                            <img src="img/blog/insta-1.jpg" alt="">
+                            <img src="img/blog/insta-2.jpg" alt="">
+                            <img src="img/blog/insta-3.jpg" alt="">
+                            <img src="img/blog/insta-4.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
