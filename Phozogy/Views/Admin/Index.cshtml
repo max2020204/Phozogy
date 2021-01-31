@@ -1,0 +1,50 @@
+﻿@model AdminView
+@{
+
+    Layout = "_AdminLayout.cshtml";
+    var pageName = ViewContext.RouteData.Values["controller"].ToString();
+    int maxpages = 6;
+}
+
+
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">All Posts</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th align="center">ID</th>
+                            <th align="center">Type</th>
+                            <th align="center">Title</th>
+                            <th align="center" class="d-none d-md-table-cell">Date</th>
+                            <th align="center">Short Description</th>
+                            <th align="center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Blog)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.Type</td>
+                                <td>@item.Title</td>
+                                <td class="d-none d-md-table-cell">@item.Date</td>
+                                <td>@item.Short_Description</td>
+                                <td class="table-action" align="center">
+                                    <a asp-action="Delete" asp-controller="Blog" asp-route-id="@item.id"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+

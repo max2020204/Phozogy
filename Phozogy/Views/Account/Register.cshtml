@@ -1,0 +1,66 @@
+﻿@model RegisterModel
+@{
+    Layout = "~/Views/Account/_AccountLayout.cshtml";
+}
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        <form class="user" method="post" asp-controller="Account" asp-action="Register">
+                            <div class="form-group row">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" asp-for="FirstName" class="form-control form-control-user" id="exampleFirstName"
+                                           placeholder="First Name" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" asp-for="LastName" class="form-control form-control-user" id="exampleLastName"
+                                           placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" asp-for="Birthday" class="form-control form-control-user" id="exampleInputBirtday"
+                                       placeholder="Birthday date" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" asp-for="UserName" class="form-control form-control-user" id="exampleInputEmail"
+                                       placeholder="User Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" asp-for="Email" class="form-control form-control-user" id="exampleInputEmail"
+                                       placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="password" asp-for="Password" class="form-control form-control-user"
+                                           id="exampleInputPassword" placeholder="Password" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" asp-for="PasswordConfirm" class="form-control form-control-user"
+                                           id="exampleRepeatPassword" placeholder="Repeat Password" required>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account "> 
+
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="login.html">Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

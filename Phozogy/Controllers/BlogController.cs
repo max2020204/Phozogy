@@ -30,5 +30,16 @@ namespace Phozogy.Controllers
             };
             return View(viewModel);
         }
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                data.Blog.DeleteBlog(id);
+            }
+            catch (Exception)
+            {
+            }
+            return RedirectToAction("Index", "Admin");
+        }
     }
 }

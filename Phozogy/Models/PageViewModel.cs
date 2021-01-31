@@ -9,10 +9,12 @@ namespace Phozogy.Models
     {
         public int PageNumber { get; private set; }
         public int TotalPages { get; private set; }
+        public int PageSize { get; set; }
 
         public PageViewModel(int count, int pageNumber, int pageSize)
         {
             PageNumber = pageNumber;
+            pageSize = pageSize;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
         }
 

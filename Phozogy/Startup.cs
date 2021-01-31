@@ -42,11 +42,16 @@ namespace Phozogy
             Configuration.Bind("SocialShare", new SocialShare());
             Configuration.Bind("ContactInformation", new ContactInformation());
             services.AddDbContext<AppDbContext>(
-                options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<User, IdentityRole>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+                opt.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-.";
+                opt.Password.RequireDigit = true;
+                opt.Password.RequiredLength = 8;
+            }).AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
         }
 
@@ -81,7 +86,6 @@ namespace Phozogy
                     name: "Post",
                     pattern: "Post/{action=Index}/{id?}",
                     defaults: new { Controller = "Post", action = "Index" });
-                endpoints.MapRazorPages();
             });
         }
     }

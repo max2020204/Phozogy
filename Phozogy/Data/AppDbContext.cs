@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Phozogy.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Phozogy.Data
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public DbSet<BlogModel> Blog { get; set; }
         public DbSet<CommentModel> Comments { get; set; }
@@ -23,6 +25,34 @@ namespace Phozogy.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<IdentityRole>().HasData(
+            new IdentityRole
+            {
+                Id= "64045cd6-ad72-4f86-9e7d-6d6a5cc9fd93",
+                Name = "user",
+                NormalizedName = "USER"
+            },
+            new IdentityRole
+            {
+                Id = "f1aed698-8ad8-4ed6-ab93-c6c71c90e803",
+                Name = "admin",
+                NormalizedName = "ADMIN"
+            });
+            builder.Entity<User>().HasData(
+            new User
+            {
+                Id = "44b4e4c5-445e-41c5-acef-2066d5669501",
+                UserName = "Admin",
+                NormalizedUserName = "ADMIN",
+                PasswordHash= new PasswordHasher<User>().HashPassword(null,"superadmin")
+            }
+            );
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = "f1aed698-8ad8-4ed6-ab93-c6c71c90e803",
+                UserId = "44b4e4c5-445e-41c5-acef-2066d5669501"
+            });
+
             builder.Entity<ReviewModel>().HasData(
             new ReviewModel
             {
@@ -107,7 +137,7 @@ namespace Phozogy.Data
                 Type = "News",
                 Title = "«ЛЮБОМУ ШОУ НУЖЕН ГРОМКИЙ ФИНАЛ» — ТРЕЙЛЕР К ЗАПУСКУ ВОСЬМОГО СЕЗОНА APEX LEGENDS",
                 Image = "https://media.contentapi.ea.com/content/dam/apex-legends/images/2019/01/apex-featured-image-16x9.jpg.adapt.crop191x100.1200w.jpg",
-                
+
                 Short_Description = "Восьмой сезон Apex Legends, «Переполох», начнётся уже 2 февраля. В преддверии скорого выхода апдейта состоялась премьера кинематографичного трейлера.",
             },
             new BlogModel
