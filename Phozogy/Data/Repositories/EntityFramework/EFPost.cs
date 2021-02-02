@@ -44,47 +44,29 @@ namespace Phozogy.Data.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public PostModel GetPrevPost(int id)
+        public PostModel GetPrevPost(PostModel post)
         {
-            PostModel[] posts = context.Post.OrderBy(x => x.Id).ToArray();
-            int newid = 0;
-            for (int i = 0; i < posts.Length; i++)
-            {
-                if (posts[i].Id == id)
-                {
-                    newid = i;
-                    break;
-                }
-            }
+            List<PostModel> posts = context.Post.OrderBy(x => x.Id).ToList();
+            int newid = posts.IndexOf(post);
             return posts[newid - 1];
         }
 
-        public PostModel GetNextPost(int id)
+        public PostModel GetNextPost(PostModel post)
         {
-            PostModel[] posts = context.Post.OrderBy(x => x.Id).ToArray();
-            int newid = 0;
-            for (int i = 0; i < posts.Length; i++)
+            List<PostModel> posts = context.Post.OrderBy(x => x.Id).ToList();
+            int newid = posts.IndexOf(post);
+            if (GetPostCount() - 1 == newid)
             {
-                if (posts[i].Id == id)
-                {
-                    newid = i;
-                    break;
-                }
+                return posts[newid];
             }
-            try
+            else
             {
                 return posts[newid + 1];
             }
-            catch (Exception)
-            {
-
-                return posts[newid];
-            }
-
         }
         public int GetPostCount()
         {
-            return context.Post.OrderBy(x => x.Id).Last().Id;
+            return context.Post.Count();
         }
     }
 }

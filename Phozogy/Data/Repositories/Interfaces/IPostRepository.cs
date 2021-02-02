@@ -10,8 +10,8 @@ namespace Phozogy.Data.Repositories.Interfaces
     {
         int GetPostCount();
         PostModel PostModel { get; set; }
-        PostModel GetPrevPost(int id);
-        PostModel GetNextPost(int id);
+        PostModel GetPrevPost(PostModel post);
+        PostModel GetNextPost(PostModel post);
         IQueryable<PostModel> Posts();
         PostModel GetPostById(int id);
         void SavePost(PostModel post);

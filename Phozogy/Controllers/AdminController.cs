@@ -47,6 +47,7 @@ namespace Phozogy.Controllers
             {
                 Type = post.Type,
                 MainPhoto = "\\\\img\\\\Files\\\\" + MainPhoto.FileName,
+                Image = "/img/Files/" + MainPhoto.FileName,
                 Description = post.Description,
                 Title = post.Title,
                 Short_Description = post.Short_Description,

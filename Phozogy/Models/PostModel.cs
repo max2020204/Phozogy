@@ -18,6 +18,9 @@ namespace Phozogy.Models
         [Display(Name = "Photo")]
         public string MainPhoto { get; set; }
         [Required]
+        [Display(Name = "Image")]
+        public string Image { get; set; }
+        [Required]
         [Display(Name = "Short Decription")]
         public string Short_Description { get; set; }
         public string Date { get; set; }
