@@ -22,8 +22,7 @@ namespace Phozogy.Controllers
         }
         [Route("post/{id}")]
         public IActionResult Index(int id)
-        {
-           
+        {         
             data.Post.PostModel = data.Post.GetPostById(id);
             return View(data);
         }

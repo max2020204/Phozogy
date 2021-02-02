@@ -43,7 +43,7 @@ namespace Phozogy.Controllers
                     // установка куки
                     await _userManager.AddToRoleAsync(user, "user");
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace Phozogy.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else

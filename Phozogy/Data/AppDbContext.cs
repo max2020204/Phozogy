@@ -38,6 +38,12 @@ namespace Phozogy.Data
                 Id = "f1aed698-8ad8-4ed6-ab93-c6c71c90e803",
                 Name = "admin",
                 NormalizedName = "ADMIN"
+            },
+            new IdentityRole
+            {
+                Id = "ccefb91e-3f23-40b5-a376-53436f2786ae",
+                Name = "moderator",
+                NormalizedName = "MODERATOR"
             });
             builder.Entity<User>().HasData(
             new User

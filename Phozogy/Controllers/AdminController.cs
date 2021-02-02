@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Phozogy.Controllers
 {
 
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "moderator,admin")]
     public class AdminController : Controller
     {
         DataManager data;
@@ -25,7 +25,7 @@ namespace Phozogy.Controllers
             this.data = data;
             _appEnvironment = appEnvironment;
         }
-        public async Task<IActionResult> Index(int page = 1)
+        public IActionResult Index()
         {
             return View(data);
         }
