@@ -1,9 +1,12 @@
 ﻿@model DataManager
 @{
     ViewData["Title"] = Model.Post.PostModel.Title;
+    int n = Model.Post.GetPostCount();
+    int t = Model.Post.GetNextPost(Model.Post.PostModel.Id).Id;
 }
 <!-- Blog Details Section Begin -->
-<div class="blog-hero set-bg" data-setbg="@Model.Post.PostModel.MainPhoto"></div>
+@*//@Model.Post.PostModel.MainPhoto*@
+<div class="blog-hero set-bg" data-setbg="\\img\\Files\\maxresdefault.jpg"></div>
 <section class="blog-details-section spad">
     <div class="container">
         <div class="row">
@@ -26,7 +29,7 @@
                     </div>
                     <div class="bd-tag-share">
                         <div class="tags">
-                            @foreach (var item in Model.Post.PostModel.Tags.Split("|"))
+                            @foreach (var item in Model.Post.PostModel.Tags.Split(","))
                             {
                                 <a href="#">@item</a>
                             }
@@ -46,7 +49,7 @@
                                 @if (Model.Post.PostModel.Id != 1)
                                 {
 
-                                    <a asp-controller="Post" asp-action="Index" asp-route-id="@Model.Post.GetPrevPost(Model.Post.PostModel.Id).Id" class="post-item prev-item">
+                                    <a asp-controller="Post" asp-action="Index" asp-route-id="@(Model.Post.GetPrevPost(Model.Post.PostModel.Id).Id)" class="post-item prev-item">
                                         <h6><span class="arrow_carrot-left"></span> Previous posts</h6>
                                         <div class="pi-pic">
                                             <img src="@Model.Post.GetPrevPost(Model.Post.PostModel.Id).MainPhoto" width="135" height="90" alt="">

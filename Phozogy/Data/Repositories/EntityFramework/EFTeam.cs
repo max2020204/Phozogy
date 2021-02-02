@@ -17,7 +17,8 @@ namespace Phozogy.Data.Repositories.EntityFramework
         }
         public void DeleteReview(int id)
         {
-            context.Team.Remove(new TeamModel() { Id = id });
+            TeamModel team = context.Team.FirstOrDefault(x=>x.Id ==id);
+            context.Entry(team).State = EntityState.Deleted;
             context.SaveChanges();
         }
 

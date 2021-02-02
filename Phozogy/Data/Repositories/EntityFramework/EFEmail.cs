@@ -17,7 +17,8 @@ namespace Phozogy.Data.Repositories.EntityFramework
         }
         public void DeleteEmail(int id)
         {
-            context.Email.Remove(new EmailSender() { Id = id });
+            EmailSender sender = context.Email.FirstOrDefault(x => x.Id == id);
+            context.Entry(sender).State = EntityState.Deleted;
             context.SaveChanges();
         }
         public EmailSender GetEmail(string email)

@@ -22,7 +22,9 @@ namespace Phozogy.Data.Repositories.EntityFramework
 
         public void DeleteBlog(int id)
         {
-            context.Blog.Remove(new BlogModel() { id = id });
+            int prev = id - 1;
+            BlogModel blog = context.Blog.FirstOrDefault(x => x.id == id);
+            context.Entry(blog).State = EntityState.Deleted;
             context.SaveChanges();
         }
 

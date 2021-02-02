@@ -17,7 +17,8 @@ namespace Phozogy.Data.Repositories.EntityFramework
         }
         public void DeleteFeedBack(int id)
         {
-            context.FeedBack.Remove(new FeedBackModel() { Id = id });
+            FeedBackModel feed = context.FeedBack.FirstOrDefault(x => x.Id == id);
+            context.Entry(feed).State = EntityState.Deleted;
             context.SaveChanges();
         }
 

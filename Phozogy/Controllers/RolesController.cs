@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Phozogy.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;

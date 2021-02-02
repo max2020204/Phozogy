@@ -40,7 +40,8 @@ namespace Phozogy.Data.Repositories.EntityFramework
         }
         public void DeleteReview(int id)
         {
-            context.Reviews.Remove(new ReviewModel() { Id = id });
+            ReviewModel review = context.Reviews.FirstOrDefault(x => x.Id == id);
+            context.Entry(review).State = EntityState.Deleted;
             context.SaveChanges();
         }
     }

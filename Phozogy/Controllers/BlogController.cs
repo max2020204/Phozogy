@@ -19,7 +19,7 @@ namespace Phozogy.Controllers
         public async Task<IActionResult> Index(int page = 1)
         {
             int pageSize = 4;
-            IQueryable<BlogModel> source = data.Blog.Blogs();
+            IQueryable<BlogModel> source = data.Blog.Blogs().Reverse();
             var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
@@ -35,6 +35,7 @@ namespace Phozogy.Controllers
             try
             {
                 data.Blog.DeleteBlog(id);
+                data.Post.DeletePost(id);
             }
             catch (Exception)
             {

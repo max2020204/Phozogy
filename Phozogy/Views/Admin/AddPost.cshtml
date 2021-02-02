@@ -1,4 +1,49 @@
 ﻿@model PostModel
-@{ 
+@{
     Layout = "_AdminLayout.cshtml";
 }
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Add Posts</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form method="post" asp-action="AddPost" asp-controller="Admin" enctype="multipart/form-data">
+                    <div class="my-2">
+                        <label for="exampleFormControlInput1" class="form-label">Title</label>
+                        <input class="form-control" type="text" asp-for="Title" placeholder="Title" />
+                    </div>
+                    <div class="my-2">
+                        <label for="exampleFormControlInput1" class="form-label">Type</label>
+                        <input class="form-control" type="text" asp-for="Type" />
+                    </div>
+                    <div class="my-2">
+                        <label for="exampleFormControlInput1" class="form-label">Main Photo</label>
+                        <input class="form-control" type="file" accept="image/*" name="MainPhoto" asp-for="MainPhoto" />
+                    </div>
+                    <div class="my-2">
+                        <label for="exampleFormControlInput1" class="form-label">Short Description</label>
+                        <textarea class="form-control" asp-for="Short_Description"></textarea>
+                    </div>
+                    <div class="my-2">
+                        <label for="exampleFormControlInput1" class="form-label">Description</label>
+                        <script src="~/lib/ckeditor/ckeditor.js"></script>
+                        <textarea class="form-control" id="content1" name="Description"></textarea>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function (event) {
+                                var editor = CKEDITOR.replace('content1');
+                            });
+                        </script>
+                    </div>
+                    <div class="my-2">
+                        <label for="exampleFormControlInput1" class="form-label">Tags (Split by , )</label>
+                        <input class="form-control" type="text" asp-for="Tags" />
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Add Post" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

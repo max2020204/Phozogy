@@ -1,13 +1,10 @@
-﻿@model AdminView
+﻿@model DataManager
 @{
 
     Layout = "_AdminLayout.cshtml";
     var pageName = ViewContext.RouteData.Values["controller"].ToString();
     int maxpages = 6;
 }
-
-
-
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -27,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Blog)
+                        @foreach (var item in Model.Blog.Blogs())
                         {
                             <tr>
                                 <td>@item.id</td>

@@ -14,7 +14,7 @@ namespace Phozogy.Models
         public PageViewModel(int count, int pageNumber, int pageSize)
         {
             PageNumber = pageNumber;
-            pageSize = pageSize;
+            PageSize = pageSize;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
         }
 

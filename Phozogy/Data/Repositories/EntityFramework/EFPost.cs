@@ -11,7 +11,7 @@ namespace Phozogy.Data.Repositories.EntityFramework
     public class EFPost : IPostRepository
     {
         public AppDbContext context { get; set; }
-        public PostModel PostModel { get ; set ; }
+        public PostModel PostModel { get; set; }
 
         public EFPost(AppDbContext context)
         {
@@ -19,7 +19,9 @@ namespace Phozogy.Data.Repositories.EntityFramework
         }
         public void DeletePost(int id)
         {
-            context.Post.Remove(new PostModel() { Id = id });
+            int prev = id - 1;
+            PostModel post = context.Post.FirstOrDefault(x => x.Id == id);
+            context.Entry(post).State = EntityState.Deleted;
             context.SaveChanges();
         }
 
@@ -44,24 +46,45 @@ namespace Phozogy.Data.Repositories.EntityFramework
 
         public PostModel GetPrevPost(int id)
         {
-
-            return context.Post.FirstOrDefault(x => x.Id == id - 1);
+            PostModel[] posts = context.Post.OrderBy(x => x.Id).ToArray();
+            int newid = 0;
+            for (int i = 0; i < posts.Length; i++)
+            {
+                if (posts[i].Id == id)
+                {
+                    newid = i;
+                    break;
+                }
+            }
+            return posts[newid - 1];
         }
 
         public PostModel GetNextPost(int id)
         {
-            if (id == context.Post.Count())
+            PostModel[] posts = context.Post.OrderBy(x => x.Id).ToArray();
+            int newid = 0;
+            for (int i = 0; i < posts.Length; i++)
             {
-                return context.Post.FirstOrDefault(x => x.Id == id);
+                if (posts[i].Id == id)
+                {
+                    newid = i;
+                    break;
+                }
             }
-            else
+            try
             {
-                return context.Post.FirstOrDefault(x => x.Id == id+1);
+                return posts[newid + 1];
             }
+            catch (Exception)
+            {
+
+                return posts[newid];
+            }
+
         }
         public int GetPostCount()
         {
-            return context.Post.Count();
+            return context.Post.OrderBy(x => x.Id).Last().Id;
         }
     }
 }

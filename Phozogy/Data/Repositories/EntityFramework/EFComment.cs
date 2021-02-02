@@ -22,7 +22,8 @@ namespace Phozogy.Data.Repositories.EntityFramework
 
         public void DeleteComment(int id)
         {
-            context.Comments.Remove(new CommentModel() { id = id });
+            CommentModel comment = context.Comments.FirstOrDefault(x => x.id == id);
+            context.Entry(comment).State = EntityState.Deleted;
             context.SaveChanges();
         }
 
