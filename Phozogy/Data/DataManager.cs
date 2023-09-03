@@ -1,9 +1,4 @@
 ﻿using Phozogy.Data.Repositories.Interfaces;
-using Phozogy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Data
 {
@@ -16,6 +11,7 @@ namespace Phozogy.Data
         public ITeamRepository Team { get; set; }
         public IEmailRepository Email { get; set; }
         public IFeedBack FeedBack { get; set; }
+
         public DataManager(IReviewRepository review, ITeamRepository team, IEmailRepository email, IFeedBack feed, IBlogRepository blog, IPostRepository post, ICommentRepository comment)
         {
             Review = review;

@@ -2,34 +2,34 @@
 using Phozogy.Data;
 using Phozogy.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Controllers
 {
     public class PostController : Controller
     {
-        DataManager data;
+        private readonly DataManager _data;
 
         public PostController(DataManager data)
         {
-            this.data = data;
+            _data = data;
         }
+
         public IActionResult Index()
         {
-            return View(data);
+            return View(_data);
         }
+
         [Route("post/{id}")]
         public IActionResult Index(int id)
-        {         
-            data.Post.PostModel = data.Post.GetPostById(id);
-            return View(data);
+        {
+            _data.Post.PostModel = _data.Post.GetPostById(id);
+            return View(_data);
         }
+
         [HttpGet]
         public IActionResult Comments()
         {
-            return View(data);
+            return View(_data);
         }
 
         [HttpPost]
@@ -37,7 +37,7 @@ namespace Phozogy.Controllers
         public IActionResult Comments(CommentModel model)
         {
             model.Date = DateTime.Now.Date.ToShortDateString();
-            data.Comment.SaveComment(model);
+            _data.Comment.SaveComment(model);
             return RedirectToAction("Index", new { id = model.PostId });
         }
     }

@@ -1,24 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Phozogy.Data;
-using Phozogy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Controllers
 {
     public class AboutController : Controller
     {
-        DataManager data;
+        private readonly DataManager _data;
+
         public AboutController(DataManager data)
         {
-            this.data = data;
-        }
-        public IActionResult Index()
-        {
-            return View(data);
+            this._data = data;
         }
 
+        public IActionResult Index()
+        {
+            return View(_data);
+        }
     }
 }

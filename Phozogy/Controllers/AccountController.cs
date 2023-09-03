@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Phozogy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Phozogy.Controllers
@@ -12,22 +9,24 @@ namespace Phozogy.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
-
                 User user = new User
                 {
                     Email = model.Email,
@@ -55,6 +54,7 @@ namespace Phozogy.Controllers
             }
             return View(model);
         }
+
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {

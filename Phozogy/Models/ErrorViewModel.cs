@@ -1,5 +1,3 @@
-using System;
-
 namespace Phozogy.Models
 {
     public class ErrorViewModel

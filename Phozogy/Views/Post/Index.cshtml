@@ -1,6 +1,7 @@
 ﻿@model DataManager
 @{
     ViewData["Title"] = Model.Post.PostModel.Title;
+
 }
 <!-- Blog Details Section Begin -->
 @*//@Model.Post.PostModel.MainPhoto*@
@@ -17,10 +18,7 @@
                             <span>@Model.Post.PostModel.Title</span>
                         </div>
                         <h2>@Model.Post.PostModel.Title</h2>
-                        <ul>
-
-                            <li>@Model.Post.PostModel.Date</li>
-                        </ul>
+                         @(Model.Post.PostModel.Date != "" ? Html.Raw($"<ul><li>{@Model.Post.PostModel.Date}</li></ul>") :"")                
                     </div>
                     <div class="bd-top-text">
                         @Html.Raw(Model.Post.PostModel.Description)

@@ -1,20 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phozogy.Data.Repositories.Interfaces;
 using Phozogy.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Data.Repositories.EntityFramework
 {
     public class EFReview : IReviewRepository
     {
-        AppDbContext context;
+        private AppDbContext context;
+
         public EFReview(AppDbContext context)
         {
             this.context = context;
         }
+
         public ReviewModel GetReviewByFullName(string name)
         {
             return context.Reviews.FirstOrDefault(x => x.FullName == name);
@@ -38,6 +37,7 @@ namespace Phozogy.Data.Repositories.EntityFramework
                 context.Entry(review).State = EntityState.Modified;
             context.SaveChanges();
         }
+
         public void DeleteReview(int id)
         {
             ReviewModel review = context.Reviews.FirstOrDefault(x => x.Id == id);

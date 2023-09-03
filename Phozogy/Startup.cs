@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +9,6 @@ using Phozogy.Data;
 using Phozogy.Data.Repositories.EntityFramework;
 using Phozogy.Data.Repositories.Interfaces;
 using Phozogy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy
 {
@@ -30,14 +24,14 @@ namespace Phozogy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IBlogRepository, EFBlog>();
-            services.AddTransient<ICommentRepository, EFComment>();
-            services.AddTransient<IPostRepository, EFPost>();
-            services.AddTransient<IReviewRepository, EFReview>();
-            services.AddTransient<ITeamRepository, EFTeam>();
-            services.AddTransient<IEmailRepository, EFEmail>();
-            services.AddTransient<IFeedBack, EFFeedBack>();
-            services.AddTransient<DataManager>();
+            services.AddScoped<IBlogRepository, EFBlog>();
+            services.AddScoped<ICommentRepository, EFComment>();
+            services.AddScoped<IPostRepository, EFPost>();
+            services.AddScoped<IReviewRepository, EFReview>();
+            services.AddScoped<ITeamRepository, EFTeam>();
+            services.AddScoped<IEmailRepository, EFEmail>();
+            services.AddScoped<IFeedBack, EFFeedBack>();
+            services.AddScoped<DataManager>();
 
             Configuration.Bind("SocialShare", new SocialShare());
             Configuration.Bind("ContactInformation", new ContactInformation());

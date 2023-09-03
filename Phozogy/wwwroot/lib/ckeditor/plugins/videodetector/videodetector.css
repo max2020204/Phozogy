@@ -1,24 +1,24 @@
 .videodetector {
-    position      : relative;
-    width         : 100%;
-    height        : 0;
+    position: relative;
+    width: 100%;
+    height: 0;
     padding-bottom: 60%;
 }
 
-.videodetector iframe {
-    position: absolute;
-    top     : 0;
-    left    : 0;
-    width   : 100%;
-    height  : 100%;
-}
+    .videodetector iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-.remove-videodetector{
+.remove-videodetector {
     position: absolute;
     top: 15px;
     left: 15px;
     z-index: 999;
-    cursor: pointer!important;
+    cursor: pointer !important;
     display: none;
     outline: none;
     padding: 10px 20px;
@@ -39,10 +39,10 @@
     transition: 0.2s;
 }
 
-.remove-videodetector:hover{
-    background-color: #c0392b;
-}
+    .remove-videodetector:hover {
+        background-color: #c0392b;
+    }
 
-.videodetector:hover .remove-videodetector{
+.videodetector:hover .remove-videodetector {
     display: block;
 }

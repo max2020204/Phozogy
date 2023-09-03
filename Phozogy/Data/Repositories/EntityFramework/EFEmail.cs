@@ -1,26 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phozogy.Data.Repositories.Interfaces;
 using Phozogy.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Data.Repositories.EntityFramework
 {
     public class EFEmail : IEmailRepository
     {
-        AppDbContext context { get; set; }
+        private AppDbContext context { get; set; }
+
         public EFEmail(AppDbContext context)
         {
             this.context = context;
         }
+
         public void DeleteEmail(int id)
         {
             EmailSender sender = context.Email.FirstOrDefault(x => x.Id == id);
             context.Entry(sender).State = EntityState.Deleted;
             context.SaveChanges();
         }
+
         public EmailSender GetEmail(string email)
         {
             return context.Email.FirstOrDefault(x => x.Email == email);

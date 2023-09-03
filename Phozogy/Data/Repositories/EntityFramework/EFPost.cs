@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phozogy.Data.Repositories.Interfaces;
 using Phozogy.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Data.Repositories.EntityFramework
 {
@@ -17,6 +15,7 @@ namespace Phozogy.Data.Repositories.EntityFramework
         {
             this.context = context;
         }
+
         public void DeletePost(int id)
         {
             int prev = id - 1;
@@ -64,6 +63,7 @@ namespace Phozogy.Data.Repositories.EntityFramework
                 return posts[newid + 1];
             }
         }
+
         public int GetPostCount()
         {
             return context.Post.Count();

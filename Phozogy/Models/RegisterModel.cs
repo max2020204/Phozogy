@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Models
 {
@@ -11,6 +8,7 @@ namespace Phozogy.Models
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
@@ -18,6 +16,7 @@ namespace Phozogy.Models
         [Required]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
+
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }

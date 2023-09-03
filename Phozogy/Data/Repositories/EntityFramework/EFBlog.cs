@@ -1,20 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phozogy.Data.Repositories.Interfaces;
 using Phozogy.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Data.Repositories.EntityFramework
 {
     public class EFBlog : IBlogRepository
     {
         public AppDbContext context { get; set; }
+
         public EFBlog(AppDbContext context)
         {
             this.context = context;
         }
+
         public IQueryable<BlogModel> Blogs()
         {
             return context.Blog.OrderBy(x => x.id);

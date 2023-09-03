@@ -69,7 +69,6 @@ var toType = function toType(obj) {
  * --------------------------------------------------------------------------
  */
 
-
 var getUID = function getUID(prefix) {
   do {
     prefix += Math.floor(Math.random() * MAX_UID);
@@ -109,7 +108,6 @@ var getTransitionDurationFromElement = function getTransitionDurationFromElement
     return 0;
   } // Get transition-duration of the element
 
-
   var _window$getComputedSt = window.getComputedStyle(element),
       transitionDuration = _window$getComputedSt.transitionDuration,
       transitionDelay = _window$getComputedSt.transitionDelay;
@@ -120,7 +118,6 @@ var getTransitionDurationFromElement = function getTransitionDurationFromElement
   if (!floatTransitionDuration && !floatTransitionDelay) {
     return 0;
   } // If multiple durations are defined, take the first
-
 
   transitionDuration = transitionDuration.split(',')[0];
   transitionDelay = transitionDelay.split(',')[0];
@@ -184,7 +181,6 @@ var findShadowRoot = function findShadowRoot(element) {
     return null;
   } // Can find the shadow root otherwise it'll return the document
 
-
   if (typeof element.getRootNode === 'function') {
     var root = element.getRootNode();
     return root instanceof ShadowRoot ? root : null;
@@ -193,7 +189,6 @@ var findShadowRoot = function findShadowRoot(element) {
   if (element instanceof ShadowRoot) {
     return element;
   } // when we don't find a shadow root
-
 
   if (!element.parentNode) {
     return null;
@@ -367,7 +362,6 @@ function bootstrapDelegationHandler(element, selector, fn) {
         }
       }
     } // To please ESLint
-
 
     return null;
   };
@@ -545,7 +539,6 @@ var EventHandler = {
         cancelable: true
       });
     } // merge custom information in our event
-
 
     if (typeof args !== 'undefined') {
       Object.keys(args).forEach(function (key) {
@@ -735,7 +728,6 @@ var Alert = /*#__PURE__*/function (_BaseComponent) {
  * ------------------------------------------------------------------------
  */
 
-
 EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DISMISS, Alert.handleDismiss(new Alert()));
 /**
  * ------------------------------------------------------------------------
@@ -824,7 +816,6 @@ var Button = /*#__PURE__*/function (_BaseComponent) {
  * Data Api implementation
  * ------------------------------------------------------------------------
  */
-
 
 EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE, function (event) {
   event.preventDefault();
@@ -1115,7 +1106,6 @@ var Carousel = /*#__PURE__*/function (_BaseComponent) {
     return _this;
   } // Getters
 
-
   var _proto = Carousel.prototype;
 
   // Public
@@ -1232,7 +1222,6 @@ var Carousel = /*#__PURE__*/function (_BaseComponent) {
     if (direction > 0) {
       this.prev();
     } // swipe right
-
 
     if (direction < 0) {
       this.next();
@@ -1594,7 +1583,6 @@ var Carousel = /*#__PURE__*/function (_BaseComponent) {
  * ------------------------------------------------------------------------
  */
 
-
 EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
 EventHandler.on(window, EVENT_LOAD_DATA_API, function () {
   var carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
@@ -1701,7 +1689,6 @@ var Collapse = /*#__PURE__*/function (_BaseComponent) {
 
     return _this;
   } // Getters
-
 
   var _proto = Collapse.prototype;
 
@@ -1975,7 +1962,6 @@ var Collapse = /*#__PURE__*/function (_BaseComponent) {
  * ------------------------------------------------------------------------
  */
 
-
 EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$1, function (event) {
   // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
   if (event.target.tagName === 'A') {
@@ -2109,7 +2095,6 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
     return _this;
   } // Getters
 
-
   var _proto = Dropdown.prototype;
 
   // Public
@@ -2144,7 +2129,6 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
       return;
     } // Totally disable Popper for Dropdowns in Navbar
 
-
     if (!this._inNavbar) {
       if (typeof Popper === 'undefined') {
         throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
@@ -2167,7 +2151,6 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
     // empty mouseover listeners to the body's immediate children;
     // only needed because of broken event delegation on iOS
     // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-
 
     if ('ontouchstart' in document.documentElement && !parent.closest(SELECTOR_NAVBAR_NAV)) {
       var _ref;
@@ -2268,7 +2251,6 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
       return PLACEMENT_LEFT;
     } // We need to trim the value because custom properties can also include spaces
 
-
     var isEnd = getComputedStyle(this._menu).getPropertyValue('--bs-position').trim() === 'end';
 
     if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
@@ -2368,7 +2350,6 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
       } // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
 
-
       if ('ontouchstart' in document.documentElement) {
         var _ref2;
 
@@ -2439,11 +2420,9 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
       index--;
     } // Down
 
-
     if (event.key === ARROW_DOWN_KEY && index < items.length - 1) {
       index++;
     } // index is -1 if the first keydown is an ArrowUp
-
 
     index = index === -1 ? 0 : index;
     items[index].focus();
@@ -2473,7 +2452,6 @@ var Dropdown = /*#__PURE__*/function (_BaseComponent) {
  * Data Api implementation
  * ------------------------------------------------------------------------
  */
-
 
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$2, Dropdown.dataApiKeydownHandler);
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
@@ -2578,7 +2556,6 @@ var Modal = /*#__PURE__*/function (_BaseComponent) {
     _this._scrollbarWidth = 0;
     return _this;
   } // Getters
-
 
   var _proto = Modal.prototype;
 
@@ -2692,7 +2669,6 @@ var Modal = /*#__PURE__*/function (_BaseComponent) {
      * Do not move `document` in `htmlElements` array
      * It will remove `EVENT_CLICK_DATA_API` event that should remain
      */
-
 
     EventHandler.off(document, EVENT_FOCUSIN);
     this._config = null;
@@ -3082,7 +3058,6 @@ var Modal = /*#__PURE__*/function (_BaseComponent) {
  * ------------------------------------------------------------------------
  */
 
-
 EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, function (event) {
   var _this12 = this;
 
@@ -3373,7 +3348,6 @@ var Tooltip = /*#__PURE__*/function (_BaseComponent) {
     return _this;
   } // Getters
 
-
   var _proto = Tooltip.prototype;
 
   // Public
@@ -3502,7 +3476,6 @@ var Tooltip = /*#__PURE__*/function (_BaseComponent) {
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
-
       if ('ontouchstart' in document.documentElement) {
         var _ref;
 
@@ -3627,7 +3600,6 @@ var Tooltip = /*#__PURE__*/function (_BaseComponent) {
       if (content.jquery) {
         content = content[0];
       } // content is a DOM node or a jQuery
-
 
       if (this.config.html) {
         if (content.parentNode !== element) {
@@ -4013,7 +3985,6 @@ var Tooltip = /*#__PURE__*/function (_BaseComponent) {
  * add .Tooltip to jQuery only if jQuery is present
  */
 
-
 onDOMContentLoaded(function () {
   var $ = getjQuery();
   /* istanbul ignore if */
@@ -4194,7 +4165,6 @@ var Popover = /*#__PURE__*/function (_Tooltip) {
  * add .Popover to jQuery only if jQuery is present
  */
 
-
 onDOMContentLoaded(function () {
   var $ = getjQuery();
   /* istanbul ignore if */
@@ -4275,7 +4245,6 @@ var ScrollSpy = /*#__PURE__*/function (_BaseComponent) {
 
     return _this;
   } // Getters
-
 
   var _proto = ScrollSpy.prototype;
 
@@ -4481,7 +4450,6 @@ var ScrollSpy = /*#__PURE__*/function (_BaseComponent) {
  * Data Api implementation
  * ------------------------------------------------------------------------
  */
-
 
 EventHandler.on(window, EVENT_LOAD_DATA_API$1, function () {
   SelectorEngine.find(SELECTOR_DATA_SPY).forEach(function (spy) {
@@ -4702,7 +4670,6 @@ var Tab = /*#__PURE__*/function (_BaseComponent) {
  * ------------------------------------------------------------------------
  */
 
-
 EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$4, function (event) {
   event.preventDefault();
   var data = Data.getData(this, DATA_KEY$9) || new Tab(this);
@@ -4780,7 +4747,6 @@ var Toast = /*#__PURE__*/function (_BaseComponent) {
 
     return _this;
   } // Getters
-
 
   var _proto = Toast.prototype;
 
@@ -4939,7 +4905,6 @@ var Toast = /*#__PURE__*/function (_BaseComponent) {
  * ------------------------------------------------------------------------
  * add .Toast to jQuery only if jQuery is present
  */
-
 
 onDOMContentLoaded(function () {
   var $ = getjQuery();

@@ -1,20 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phozogy.Data.Repositories.Interfaces;
 using Phozogy.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Phozogy.Data.Repositories.EntityFramework
 {
     public class EFFeedBack : IFeedBack
     {
-        AppDbContext context { get; set; }
+        private AppDbContext context { get; set; }
+
         public EFFeedBack(AppDbContext context)
         {
             this.context = context;
         }
+
         public void DeleteFeedBack(int id)
         {
             FeedBackModel feed = context.FeedBack.FirstOrDefault(x => x.Id == id);

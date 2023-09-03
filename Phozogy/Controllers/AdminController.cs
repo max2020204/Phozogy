@@ -3,37 +3,37 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Phozogy.Data;
 using Phozogy.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Phozogy.Controllers
 {
-
     [Authorize(Roles = "moderator,admin")]
     public class AdminController : Controller
     {
-        DataManager data;
-        IWebHostEnvironment _appEnvironment;
-        public AdminController(DataManager data, SignInManager<User> user, IWebHostEnvironment appEnvironment)
+        private readonly DataManager _data;
+        private readonly IWebHostEnvironment _appEnvironment;
+
+        public AdminController(DataManager data, IWebHostEnvironment appEnvironment)
         {
-            this.data = data;
+            this._data = data;
             _appEnvironment = appEnvironment;
         }
+
         public IActionResult Index()
         {
-            return View(data);
+            return View(_data);
         }
+
         [HttpGet]
         public IActionResult AddPost()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> AddPost(PostModel post, IFormFile MainPhoto)
         {
@@ -43,7 +43,7 @@ namespace Phozogy.Controllers
             {
                 await MainPhoto.CopyToAsync(fileStream);
             }
-            PostModel newpost = new PostModel
+            PostModel newpost = new()
             {
                 Type = post.Type,
                 MainPhoto = "\\\\img\\\\Files\\\\" + MainPhoto.FileName,
@@ -54,7 +54,7 @@ namespace Phozogy.Controllers
                 Tags = post.Tags,
                 Date = DateTime.Now.ToShortDateString()
             };
-            BlogModel blog = new BlogModel
+            BlogModel blog = new()
             {
                 Date = DateTime.Now.ToShortDateString(),
                 Short_Description = post.Short_Description,
@@ -65,17 +65,14 @@ namespace Phozogy.Controllers
 
             if (ModelState.IsValid)
             {
-                data.Post.SavePost(newpost);
-                data.Blog.SaveBlog(blog);
+                _data.Post.SavePost(newpost);
+                _data.Blog.SaveBlog(blog);
             }
             else
             {
-                data.Post.SavePost(newpost);
-                data.Blog.SaveBlog(blog);
-
-
+                _data.Post.SavePost(newpost);
+                _data.Blog.SaveBlog(blog);
             }
-
 
             return RedirectToAction("Index");
         }
